@@ -4,14 +4,14 @@
         Analytics TRAcking toolKIT (ATRAKIT /ah... track it!/) (requires jQuery)
     ********************************************************************************************
 
-	Chad Leigh Kluck (63Klabs) - 12/09/2016
-	Version: 2016.12.09
+	Chad Leigh Kluck (63Klabs)
+	Version: 0.1.3-20170118-01
 	github.com/chadkluck/atrakit
 	
 	Released under Creative Commons Attribution 4.0 International license (CC BY)
 	https://creativecommons.org/licenses/by/4.0/
 	
-	The code, with it's heavy use of comments, is provided as an educational resource in hopes
+	The code, with its heavy use of comments, is provided as an educational resource in hopes
 	that it can be useful in function and disection.
 	Minifying and obvuscating for production environments is OK and, in fact, strongly encouraged 
 	even if it removes attribution comments.
@@ -72,7 +72,7 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
    +++ Local variables +++ */
 	
 	/* Script info */
-	var version = "0.1.2-20161209-01"; // just a manual version number for debugging and preventing unneccessary hair pulling: "Is it loading the code I *thought* I uploaded?"
+	var version = "0.1.3-20170118-01"; // just a manual version number for debugging and preventing unneccessary hair pulling: "Is it loading the code I *thought* I uploaded?"
 	var code    = "github.com/chadkluck/atrakit";
 	var handle  = "ATRAKIT";
 	var name    = "Analytics TRAcking toolKIT";
@@ -217,6 +217,14 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 		gaFlavor = null; // reset
 		hasGA(); // detect flavor
 	};
+
+	
+	/* =====================================================================
+		setDownloadFileTypes()
+	*/
+	var setDownloadFileTypes = function ( sFileTypes ) {
+		fileTypes = sFileTypes;
+	};
 	
 	/* =====================================================================
 		eventTrigger()
@@ -252,105 +260,110 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 		$(document).atrakitGet("gaFlavor");	// since we're local we could have just used getGA();
 				
 		// if we did $(document).atrakit("init") then we want to apply it to the BODY (whole page)
-		if( typeof $obj.prop("tagName") ===  "undefined" ) { 
+		if( /*typeof $obj.prop("tagName") ===  "undefined"*/ $obj.is(document) ) { 
 			$obj = $(document.getElementsByTagName("BODY")[0]);
 		} 
 		
-		// let the devs know what we are setting up (espcially if not BODY)
-		debug("Init on for "+ $obj.prop('tagName')+": "+levels[level+1]); 
+		if (typeof $obj.prop('tagName') === 'undefined' ) {
+			debug("Tracking selector returned 0 results");
+		} else {
+			// let the devs know what we are setting up (espcially if not BODY)
+			debug("Init on for "+ $obj.prop('tagName')+": "+levels[level+1]); 	
+
 		
-		// Are we tagging elements?
-		if(level >= 0) {
-			/* ---------------------------------------------------------------------
-				1.0: FIRST: LABEL EVERYTHING WITH data-category, data-action, and data-label
-				We make two passes (1.1 & 1.2)
-			*/
-			
-			// initialize findElements, we'll reset this var a few times
-			var findElements = ""; // jQuery selector notation
-			
-			// exclude everything that already has all 3 data attributes (category, action, label) OR explicitly marked as Do Not Track
-			var excludeElements = "[data-category][data-action][data-label], [data-atrakit='false']"; // jQuery selector notation
-			
-			/* ---------------------------------------------------------------------
-				1.1: Pass #1: Find the following:
-			*/
-			
-			// set the findElements for initial pass (in jQuery selector notation)
-			findElements = "form, select:required, input:required, "         /* forms and elements */
-						 + "a[href=''], a[href^='javascript:'], a[href^='mailto:'], a[href^='tel:'], " /* special href, including those that link to self */
-						 + "a.button, button, "                              /* buttons */
-						 + "[data-atrakit='true'], [data-atrakit-event]";    /* explicitly labeled for atrakit event tagging */
-			
-			// Perform the search and use $.fn.atrakitAdd() to add the data attributes
-			$obj.find( findElements ).not( excludeElements ).atrakitAdd("data"); // execute
-			
-			/* ---------------------------------------------------------------------
-				1.2: Pass #2: Now find the following only certain anchor ("A") tags:
-				
-				We DON'T care about internal links
-				We DO care about:
-					- Links to other domains/sub-domains (external links)
-					- Links that take a user to a specific ID (#)
-					- Links that are downloads
-					
-				The "a[href*='#'], a[href*='.']" selector only identifies potential candidates, 
-				but $.fn.atrakitFilter() will actually identify and pull out the ones we care about
-			*/
-			
-			// note that a[href*='.'] will match domains and files asdf.mp3 as well as asdf.html so we will add a filter for deeper inpsection
-			findElements =  "a[href*='#'], a[href*='.']"; // jQuery selector notation
-			
-			// Perform the search, use $.fn.atrakitFilter() to further limit findings and then $.fn.atrakitAdd() to add the data attributes
-			$obj.find( findElements ).not(".button, " + excludeElements ).atrakitLinkFilter().atrakitAdd("data");
-		}
-		
-		// Are we tracking events?
-		if (level <= 0) {
-			/* ---------------------------------------------------------------------
-				2.0: SECOND: Add the event handlers
-	
-				Starting at the parent, these will automatically add new event handlers when new children are added.
-				Note that anything new needs to already be tagged with data attributes as we are not going back and
-				adding any. 
-				
-				However, this will detect any new tags with data attributes (even if it is just data-atrakit=true) and
-				if there are no data-category, data-action, or data-label attributes, we'll add them at event time.
-				
-				Note that while we used .atrakitAdd("data") we can't use atrakitAdd("event") here. Why?
-				Because, for example, 2.1 and 2.2 adds event handlerls to all current, and all future, elements that 
-				match the criteria. 2.3 would be a good candidate but it is already 1 line. .atrakitAdd("event") is 
-				really a 4th unique way to add the event handlers, serving it's own purpose.
-			*/
-			
-			var eList = ""; // we'll use this later
-			
-			/* ---------------------------------------------------------------------
-				2.1: STEP 1: Handle events for predefined THINGS and their default Events 
-				
-				We are going to use the "things" array to add default event handlers
-			*/
-			Object.keys(things).forEach(function(key) {
-				// ex: $("table").on( "click", "button", function() {}) tags all current and all future buttons in table elements
-				$obj.on( things[key], key +"[data-category]:not([data-atrakit-event])", eventTrigger);
-				eList = eList + key + ", "; // we'll use this later, but why not put it in an already existing loop?
-			}, things);
-			
-			/* ---------------------------------------------------------------------
-				2.2: STEP 2: Handle events for predefined THINGS and their default Events 
-				
-				Find all the atrakit-events, those elements that have an override event handler (instead of default click maybe a mouseenter)
-			*/
-			$obj.find( "[data-category][data-atrakit-event]" ).each( function() {
-				$(this).on( $(this).attr("data-atrakit-event"), eventTrigger);
-			});
-			
-			/* ---------------------------------------------------------------------
-				2.3: STEP 3: Handle events for predefined THINGS and their default Events 
-				
-				Find remaining elements that are not in the list and give them a default click event
-			*/
-			$obj.on( "click", "[data-category]:not("+ eList + "[data-atrakit-event])", eventTrigger);
+			// Are we tagging elements?
+			if(level >= 0) {
+				/* ---------------------------------------------------------------------
+					1.0: FIRST: LABEL EVERYTHING WITH data-category, data-action, and data-label
+					We make two passes (1.1 & 1.2)
+				*/
+
+				// initialize findElements, we'll reset this var a few times
+				var findElements = ""; // jQuery selector notation
+
+				// exclude everything that already has all 3 data attributes (category, action, label) OR explicitly marked as Do Not Track
+				var excludeElements = "[data-category][data-action][data-label], [data-atrakit='false']"; // jQuery selector notation
+
+				/* ---------------------------------------------------------------------
+					1.1: Pass #1: Find the following:
+				*/
+
+				// set the findElements for initial pass (in jQuery selector notation)
+				findElements = "form, select:required, input:required, "         /* forms and elements */
+							 + "a[href=''], a[href^='javascript:'], a[href^='mailto:'], a[href^='tel:'], " /* special href, including those that link to self */
+							 + "a.button, button, "                              /* buttons */
+							 + "[data-atrakit='true'], [data-atrakit-event]";    /* explicitly labeled for atrakit event tagging */
+
+				// Perform the search and use $.fn.atrakitAdd() to add the data attributes
+				$obj.find( findElements ).not( excludeElements ).atrakitAdd("data"); // execute
+
+				/* ---------------------------------------------------------------------
+					1.2: Pass #2: Now find the following only certain anchor ("A") tags:
+
+					We DON'T care about internal links
+					We DO care about:
+						- Links to other domains/sub-domains (external links)
+						- Links that take a user to a specific ID (#)
+						- Links that are downloads
+
+					The "a[href*='#'], a[href*='.']" selector only identifies potential candidates, 
+					but $.fn.atrakitFilter() will actually identify and pull out the ones we care about
+				*/
+
+				// note that a[href*='.'] will match domains and files asdf.mp3 as well as asdf.html so we will add a filter for deeper inpsection
+				findElements =  "a[href*='#'], a[href*='.']"; // jQuery selector notation
+
+				// Perform the search, use $.fn.atrakitFilter() to further limit findings and then $.fn.atrakitAdd() to add the data attributes
+				$obj.find( findElements ).not(".button, " + excludeElements ).atrakitLinkFilter().atrakitAdd("data");
+			} /* end level >= 0 */
+
+			// Are we tracking events?
+			if (level <= 0) {
+				/* ---------------------------------------------------------------------
+					2.0: SECOND: Add the event handlers
+
+					Starting at the parent, these will automatically add new event handlers when new children are added.
+					Note that anything new needs to already be tagged with data attributes as we are not going back and
+					adding any. 
+
+					However, this will detect any new tags with data attributes (even if it is just data-atrakit=true) and
+					if there are no data-category, data-action, or data-label attributes, we'll add them at event time.
+
+					Note that while we used .atrakitAdd("data") we can't use atrakitAdd("event") here. Why?
+					Because, for example, 2.1 and 2.2 adds event handlerls to all current, and all future, elements that 
+					match the criteria. 2.3 would be a good candidate but it is already 1 line. .atrakitAdd("event") is 
+					really a 4th unique way to add the event handlers, serving it's own purpose.
+				*/
+
+				var eList = ""; // we'll use this later
+
+				/* ---------------------------------------------------------------------
+					2.1: STEP 1: Handle events for predefined THINGS and their default Events 
+
+					We are going to use the "things" array to add default event handlers
+				*/
+				Object.keys(things).forEach(function(key) {
+					// ex: $("table").on( "click", "button", function() {}) tags all current and all future buttons in table elements
+					$obj.on( things[key], key +"[data-category]:not([data-atrakit-event])", eventTrigger);
+					eList = eList + key + ", "; // we'll use this later, but why not put it in an already existing loop?
+				}, things);
+
+				/* ---------------------------------------------------------------------
+					2.2: STEP 2: Handle events for predefined THINGS and their default Events 
+
+					Find all the atrakit-events, those elements that have an override event handler (instead of default click maybe a mouseenter)
+				*/
+				$obj.find( "[data-category][data-atrakit-event]" ).each( function() {
+					$(this).on( $(this).attr("data-atrakit-event"), eventTrigger);
+				});
+
+				/* ---------------------------------------------------------------------
+					2.3: STEP 3: Handle events for predefined THINGS and their default Events 
+
+					Find remaining elements that are not in the list and give them a default click event
+				*/
+				$obj.on( "click", "[data-category]:not("+ eList + "[data-atrakit-event])", eventTrigger);
+			} /* end level <= 0 */
 		}
 
 		/* ---------------------------------------------------------------------
@@ -556,7 +569,7 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 							   What a hero! */
 							updateDataAttr("category", "Script"  );
 							updateDataAttr("action",   "Link" );
-							updateDataAttr("label",    "javascript: in HREF" ); // you didn't think we'd really put the javascript in your report, did you?
+							updateDataAttr("label",    "'javascript:' in HREF" ); // you didn't think we'd really put the javascript in your report, did you?
 						} 
 						
 						// no, its just a link!
@@ -951,6 +964,14 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 		};
 						  
 	$(document).atrakit("config", { customAnalytic: myCustomAnalytic });
+	
+	// Example of all config parameters
+	$(document).atrakit("config", {
+		silence: true,
+		listEventType: true,
+		customAnalytic: myCustomAnalytic,
+		fileTypes: "pdf|mp3"
+	})
 	*/
 	
 	
@@ -974,6 +995,7 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 				if ( typeof param.silence !== 'undefined' ) { setSilence(param.silence); }
 				if ( typeof param.listEventType !== 'undefined' ) { setListEventType(param.listEventType); }
 				if ( typeof param.customAnalytic !== 'undefined' ) { setCustomFlavor(param.customAnalytic); }
+				if ( typeof param.fileTypes !== 'undefined' ) { setDownloadFileTypes(param.fileTypes); }
 				break;			
 
 			default:
