@@ -1,0 +1,34 @@
+/*
+*************************************************************
+* DEFAULT CSS FOR PLAIN PAGES
+*************************************************************
+Chad Kluck - https://chadkluck.net
+
+Makes a single 800px (80rem) responsive column centered on 
+the page with larger font
+*************************************************************
+*/
+
+html {
+    font-size: 62.5%; /* http://snook.ca/archives/html_and_css/font-size-with-rem */
+    /* at 62.5% 1.6rem is 16px, 1.2rem is 12px. Easy to calc relative to px */
+}
+
+body {
+    font-size: 1.6rem; /* = 16px when html font-size: 62.5% */
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body > div {
+    padding-right: 1.0rem;
+    padding-left: 1.0rem;
+    max-width: 80.0rem;
+    margin-right: auto;
+    margin-left: auto;
+}

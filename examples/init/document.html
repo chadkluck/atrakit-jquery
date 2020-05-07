@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="../examples.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+	<title>Document Selector - ATRAKIT</title>
+
+</head>
+<body>
+
+	<div id="main">
+	
+		<h1>Atrakit (document) Selector Test Page</h1>
+
+		<p>This page selects and tracks using <tt>$(document).atrakit("init");</tt></p>
+		<p>When (document) is used as a selector, the BODY tag is used. So, same as saying $("BODY")
+			except (document) is a shortcut, with no shift key for the surrounding &quot; yet more 
+			characters with the same number of keystrokes. However it is more elegant and dynamic 
+			because (document) is an object, where ("BODY") is just some static text. If you agree
+			you're so gullible. But we agree (document) it does at least <em>look</em> more 
+			sophisticated than ("BODY"). Something we can have a sip of wine to and nod to
+			with perceived satisfaction.</p>
+
+		<h2>Test Links</h2>
+
+		<h3>Off Page/Site Links</h3>
+		
+		<p><input type="checkbox" id="openNewWindow"> Open in new window (Some browsers don't track when a link is opened in same window)</p>
+		<script>
+			$(document).ready(function($) {
+				
+				var toggleIt = function( toggle ) {
+					if( toggle ) {
+						$(".toggletarget a").attr("target","_blank");
+					} else {
+						$(".toggletarget a").attr("target","_parent");
+					}
+				}
+				
+				var checkIt = function() {
+					toggleIt( this.checked )
+				}
+
+				toggleIt( document.getElementById("openNewWindow").checked );
+				
+				$("input#openNewWindow").on("click", checkIt);
+			});
+		</script>
+
+		<ul class="toggletarget">
+			<li><a href="//example.com">To Example.com</a></li>
+			<li><a href="http://example.com">To Example.com</a></li>
+			<li><a href="https://example.com">To Example.com</a></li>
+			<li><a href="https://example.com">To Example.com</a></li>
+			<li><a href="//atrakit.demo.63klabs.net">Demo domain //</a></li>
+			<li><a href="http://atrakit.demo.63klabs.net">Demo domain http</a></li>
+			<li><a href="https://atrakit.demo.63klabs.net">Demo domain https</a></li>
+			<li><a href="asdf.html">This domain - asdf.html page</a></li>
+			<li><a href="http://atrakit.demo.63klabs.net/asdf.html">Demo domain - asdf.html page</a></li>
+			<li><a href="/">This domain - Home</a></li>
+			<li><a href="">This page (empty)</a></li>
+			<li><a href="#asdf">Jump within this page</a></li>
+			<li><a href="#">Jump within this page (empty)</a></li>
+			<li><a href="asdf.html#asdf">Jump within another page</a></li>
+		</ul>
+
+
+		<h3>Contact and Script Links</h3>
+
+		<ul>
+			<li><a href="mailto:me@me.com">Email</a></li>
+			<li><a href="tel:4025553987">Telephone</a></li>
+			<li><a href="javascript:(alert('hi'));">Javscript</a></li>
+		</ul>
+
+		<h3>Download Events:</h3>
+
+		<ul>
+			<li><a href="/example/files/asdf56.txt?asf=asf">asdf56.txt?asf=asf</a></li>
+			<li><a href="/example/files/asdf90.mov?asdf=23">asdf90.mov?asdf=23</a></li>
+			<li><a href="/example/files/asdf19.txt">asdf19.txt</a></li>
+			<li><a href="/example/files/asdf23.pdf">asdf23.pdf</a></li>
+			<li><a href="/example/files/asdf134.ppt">ppt</a></li>
+			<li><a href="/example/files/asdf561.pptx">pptx</a></li>
+			<li><a href="/example/files/asdf-254.xls">xls</a></li>
+			<li><a href="/example/files/asdf-123.xlsx">xlsx</a></li>
+			<li><a href="/example/files/asdf-124.doc">doc</a></li>
+			<li><a href="/example/files/asdf-125.docx">docx</a></li>
+			<li><a href="/example/files/asdf-126.mp3">mp3</a></li>
+			<li><a href="/example/docs/asdf-127.mp4">mp4</a></li>
+			<li><a href="/example/docs/asdf-128.mpeg">mpeg</a></li>
+			<li><a href="/example/docs/asdf-129.mov">mov</a></li>
+			<li><a href="/example/docs/asdf-130.avi">avi</a></li>
+			<li><a href="/example/docs/asdf-131.wmv">wmv</a></li>
+			<li><a href="/example/docs/asdf-132.wav">wav</a></li>
+			<li><a href="/example/docs/asdf-133.zip">zip</a></li>
+			<li><a href="/example/docs/asdf-134.jar">jar</a></li>
+			<li><a href="/example/docs/asdf-135.gif">gif</a></li>
+			<li><a href="/example/docs/asdf-136.jpeg">jpeg</a></li>
+			<li><a href="/example/docs/asdf-137.jpg">jpg</a></li>
+			<li><a href="/example/docs/asdf-138.png">png</a></li>
+			<li><a href="example/docs/asdf-138.png">png</a></li>
+			<li><a href="http://www.example.com/example/docs/asdf-138.png">png (off site)</a></li>
+		</ul>
+		
+	
+	</div>
+
+	
+	<footer>
+	</footer>
+
+	<script src="../../atrakit.js"></script>
+
+
+	<script>
+		(function($) {
+			$(document).atrakit("init");
+		})(jQuery);
+	</script>
+
+</body>
+</html>
