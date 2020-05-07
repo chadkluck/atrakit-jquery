@@ -30,7 +30,7 @@ Go to https://atrakit.demo.63klabs.net and open a browser console to see it in a
 
 `$(document).atrakit("init"); // will add it to all trackable events on a page`
 
-[Whole page examples](examples/init/body.html)
+See [Whole page examples](examples/init/body.html)
 
 By default it's the only call you need with no configuration necessary!
 
@@ -58,7 +58,7 @@ The following piece of code will track all trackable elements within _A jQuery S
 
 `$("#main-body, #footer, div.ads").atrakit("init"); // Selector examples`
 
-[Selector examples](examples/init/selectors.html)
+See [Selector examples](examples/init/selectors.html)
 
 Any jQuery selector may be used, and may be used with .not, .filter, etc. `$(selector).not(something).filter(somethingtoo).atrakit("init");`. Even though "document" is not a selector, the script recognizes it and treats it as $("BODY") so $(document).atrakit("init") and $("BODY").atrakit("init") is essentially the same thing.
 
@@ -76,4 +76,4 @@ The following piece of code will track all elements captured by the selector:
 
 `$(".clickable").atrakitAdd();`
 
-[atrakitAdd() examples](examples/add/index.html)
+See [atrakitAdd() examples](examples/add/index.html)
