@@ -5,7 +5,7 @@
     ********************************************************************************************
 
 	Chad Leigh Kluck (63Klabs)
-	Version: 0.1.3-20170118-01
+	Version: 0.1.4-20210107-1223
 	github.com/chadkluck/atrakit
 	
 	Released under Creative Commons Attribution 4.0 International license (CC BY)
@@ -72,7 +72,7 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
    +++ Local variables +++ */
 	
 	/* Script info */
-	var version = "0.1.3-20170118-01"; // just a manual version number for debugging and preventing unneccessary hair pulling: "Is it loading the code I *thought* I uploaded?"
+	var version = "0.1.4-20210107-1223"; // just a manual version number for debugging and preventing unneccessary hair pulling: "Is it loading the code I *thought* I uploaded?"
 	var code    = "github.com/chadkluck/atrakit";
 	var handle  = "ATRAKIT";
 	var name    = "Analytics TRAcking toolKIT";
@@ -108,7 +108,7 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 				  pagefn: function(page) { _gaq.push(['_trackPageview', page]); },
 				  detectfn: function() { return (typeof _gaq !== 'undefined'); }
 				},
-		/* using universal analytics.js - the latest and greatest! */							  
+		/* using universal analytics.js - old */							  
 		  UNIV: { desc: "Using Universal Analytics (analytics.js)",  
 				  eventfn: function(category, action, label) { ga('send', 'event', category, action, label); }, 
 				  pagefn: function(page) { ga('send', 'pageview', page); },
@@ -117,7 +117,7 @@ if (typeof atrakit === 'undefined') { atrakit = false; } // let init take care o
 				  
 		/* using Google Tag Manager */
 		  GTMX: { desc: "Using Google Tag Manager",  
-				  eventfn: function(category, action, label) { /* do nothing */ }, 
+				  eventfn: function(category, action, label) { gtag('event', action, { 'event_category': category, 'event_label': label }); }, 
 				  pagefn: function(page) { /* do nothing */ },
 				  detectfn: function() { return (typeof dataLayer !== 'undefined'); }
 				},
