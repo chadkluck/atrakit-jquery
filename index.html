@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>ATRAKIT Examples</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="examples/examples.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+
+</head>
+<body>
+
+	<div id="main">
+
+		<h1>ATRAKIT Examples</h1>
+
+		<p>These pages may be used to see how ATRAKIT works. Open up a browser console, or even install on your own site and update your Google Analytics to view in real time.</p>
+		
+		<p>These pages may also be used for testing if you tweak a piece of code.</p>
+	
+		<p>It is important to note that using jQuery selectors, elements within containers, or specific elements themselves may be tracked. Choose the best option for your site needs and combine them sparingly. $(document).atrakit("init"); is the recommended option.</p>
+	
+		<h2>Tracking Using .atrakit("init")</h2>
+	
+		<p>This is the best option, and the recommended call is this: <tt>$(document).atrakit("init");</tt> That's it! All trackable elements will be tracked!</p>
+	
+		<p>The following piece of code will track all trackable elements in a page (because &quot;document&quot; is passed to it):</p>
+	
+		<p><tt>$(document).atrakit("init"); // <a href="examples/init/body.html">Whole page examples</a></tt></p>
+		
+		<p>The following piece of code will track all trackable elements within <em>A jQuery SELECTED CONTAINER</em> (&quot;#main-body&quot;, &quot;#footer&quot;, and &quot;div.ads&quot;):</p>
+	
+		<p><tt>$("#main-body, #footer, div.ads").atrakit("init"); // <a href="examples/init/selectors.html">Selector examples</a></tt></p>
+	
+		<p>Any jQuery selector may be used, and may be used with .not, .filter, etc. <tt>$(selector).not(something).filter(somethingtoo).atrakit("init");</tt>. Even though &quot;document&quot; is not a selector, the script recognizes it and treats it as <tt>$("BODY")</tt> so <tt>$(document).atrakit("init")</tt> and <tt>$("BODY").atrakit("init")</tt> is essentially the same thing.</p>
+	
+		<p>CAUTION! NEVER CROSS THE STREAMS! It won't result in total protonic reversal, but doing something like <tt>$(document).atrakit("init); $("table").atrakit("init");</tt> &quot;would be bad&quot; even if you are fuzzy on the whole good/bad thing.</p>
+	
+		<p>Using .atrakit("init") is useful because if new, trackable elements are loaded onto the page after the init is invoked it will track them too!</p>
+	
+		<p>What is trackable (by default)? Basically it includes (but not limted to):</p>
+		<ul>
+			<li><tt>A</tt>
+				<ul>
+					<li>if it is downloadable (mp3, pdf, etc)</li>
+					<li>if it links offsite (to another domain)</li>
+					<li>if it has contact markup (href=mailto:, href=tel:)</li>
+					<li>if it has href=javascript:</li>
+				</ul>
+			</li>
+			<li><tt>INPUT</tt>, <tt>SELECT</tt> if it is required</li>
+			<li><tt>FORM</tt> (All)</li>
+			<li>Any element (<tt>P</tt>, <tt>SPAN</tt>, etc), including <tt>A</tt> and <tt>INPUT</tt> if the following attributes are present:
+				<ul>
+					<li><tt>data-category</tt> - just add data-category, data-label, data-action to any element that would not normally be tracked and it will be tracked (default event is onClick)</li>
+					<li><tt>data-atrakit=true</tt> - add this if you don't want to go through the hassle of adding data-category and the like, the script will do it for you (default event is onClick)</li>
+					<li><tt>data-atrakit-event</tt> - add this if you want to have events trigger on things like hover. This can also be used to change the default event behavior. Just add an event type to the attribute's value <tt>data-atrakit-event="mouseenter"</tt></li>
+				</ul>
+			</li>
+		</ul>
+		
+		<p>Note that if a trackable event does not have data-category, data-label, or data-action attributes, they will automatically be generated.</p>
+	
+		<h2>Tracking Using .atrakitAdd()</h2>
+	
+		<p>Maybe you have a different flavor of analytics, maybe you already have some other auto tag feature going but it isn't getting all of your stuff. Whatever the reason we have another solution: .atrakitAdd()</p>
+	
+		<p>.atrakitAdd() will add data attributes and/or event triggers to specific elements (not children, grandchildren, etc). For example, if you want to add data, but not events to all p.play elements $("p.play").atrakitAdd("data") is your friend. Want both data and events added? $("p.play").atrakitAdd(). Want just events? $("p.play").atrakitAdd("event") but note that if data-category, action, and label aren't already on p.play elements, events won't be added. .atrakitAdd("event") only adds events to elements with the data-category and the like already added, even if atrakit-event and atrakit=true are in the element. Why? Because if you wanted data AND events then use ().</p>
+	
+		<p>Remember, unlike .atrakit("init), .atrakitAdd() tracks the element(s) selected through the selector, it it does not track child, grandchild, etc elements of that element or elements that come into existence later after the .atrakitAdd element was run. There are limited use cases why .atrakitAdd can be used, it is best to stick with .atrakit("init").</p>
+	
+		<p>The following piece of code will track all elements captured by the selector:</p>
+		<p><tt>$(".clickable").atrakitAdd(); // <a href="examples/add/index.html">atrakitAdd() examples</a></tt></p>
+	
+	</div>
+	
+	<footer>
+	</footer>
+
+	<script src="atrakit.js"></script>
+	<script>
+		// initialize ATRAKIT for entire page
+		$(document).ready( function() { 
+			$(document).atrakit("init");
+		});
+	</script>
+
+</body>
+</html>

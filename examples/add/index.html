@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+<link rel="stylesheet" href="../examples.css">
+
+</head>
+<body>
+
+<h1>Atrakit Example Page</h1>
+
+<p>This page has all trackable elements tracked using <pre>$(document).atrakit("init");</pre></p>
+
+<p>Alternatively, see examples of how to <a href="examples-2.html">scope tracking to certain portions</a> of pages.</p>
+<h2>Click Events - Not Pre-labeled</h2>
+
+<h3>Normal links</h3>
+
+<ul>
+<li><a href="//example.com">To Example.com</a></li>
+<li><a href="http://example.com">To Example.com</a></li>
+<li><a href="https://example.com">To Example.com</a></li>
+<li><a href="https://example.com">To Example.com</a></li>
+<li><a href="//atrakit.demo.63klabs.net">Demo domain //</a></li>
+<li><a href="http://atrakit.demo.63klabs.net">Demo domain http</a></li>
+<li><a href="https://atrakit.demo.63klabs.net">Demo domain https</a></li>
+<li><a href="asdf.html">This domain - asdf.html page</a></li>
+<li><a href="http://atrakit.demo.63klabs.net/asdf.html">Demo domain - asdf.html page</a></li>
+<li><a href="/">This domain - Home</a></li>
+<li><a href="">This page (empty)</a></li>
+<li><a href="#asdf">Jump within this page</a></li>
+<li><a href="#">Jump within this page (empty)</a></li>
+<li><a href="asdf.html#asdf">Jump within another page</a></li>
+</ul>
+
+
+<h3>Contact and Script Links</h3>
+
+<ul>
+<li><a href="mailto:me@me.com">Email</a></li>
+<li><a href="tel:6123826671">Telephone</a></li>
+<li><a href="javascript:(alert('hi'));">Javscript</a></li>
+</ul>
+
+<h2>Download Events:</h2>
+
+<ul>
+<li><a href="/example/files/asdf56.txt?asf=asf">asdf56.txt?asf=asf</a></li>
+<li><a href="/example/files/asdf90.mov?asdf=23">asdf90.mov?asdf=23</a></li>
+<li><a href="/example/files/asdf19.txt">asdf19.txt</a></li>
+<li><a href="/example/files/asdf23.pdf">asdf23.pdf</a></li>
+<li><a href="/example/files/asdf134.ppt">ppt</a></li>
+<li><a href="/example/files/asdf561.pptx">pptx</a></li>
+<li><a href="/example/files/asdf-254.xls">xls</a></li>
+<li><a href="/example/files/asdf-123.xlsx">xlsx</a></li>
+<li><a href="/example/files/asdf-124.doc">doc</a></li>
+<li><a href="/example/files/asdf-125.docx">docx</a></li>
+<li><a href="/example/files/asdf-126.mp3">mp3</a></li>
+<li><a href="/example/docs/asdf-127.mp4">mp4</a></li>
+<li><a href="/example/docs/asdf-128.mpeg">mpeg</a></li>
+<li><a href="/example/docs/asdf-129.mov">mov</a></li>
+<li><a href="/example/docs/asdf-130.avi">avi</a></li>
+<li><a href="/example/docs/asdf-131.wmv">wmv</a></li>
+<li><a href="/example/docs/asdf-132.wav">wav</a></li>
+<li><a href="/example/docs/asdf-133.zip">zip</a></li>
+<li><a href="/example/docs/asdf-134.jar">jar</a></li>
+<li><a href="/example/docs/asdf-135.gif">gif</a></li>
+<li><a href="/example/docs/asdf-136.jpeg">jpeg</a></li>
+<li><a href="/example/docs/asdf-137.jpg">jpg</a></li>
+<li><a href="/example/docs/asdf-138.png">png</a></li>
+<li><a href="example/docs/asdf-138.png">png</a></li>
+<li><a href="http://www.example.com/example/docs/asdf-138.png">png</a></li>
+</ul>
+
+<p>Filtered</p>
+
+<p>These are internal site links that should not be tagged, and not even taken within the selector (as it slows the script down) They should be properly excluded when processing.</p>
+<p><a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> <a href="/asdf">a</a> </p>
+
+<p>These are already labled and shouldn't be touched or even looked at</p>
+<p><a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a> <a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a></p>
+
+<p>These still need category and action attributes</p>
+<p><a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> <a href="asdf.mp3" data-label="mp3">a</a> </p>
+<ul>
+<li><a href="asdf.mp3" data-category="Pre" data-action="download" data-label="mp3">a</a></li>
+<li><a href="asdf.mp3" data-category="Pre" data-action="download">This needs a data-label</a></li>
+</ul>
+
+<h3>Include/Exclude</h3>
+<p><span data-atrakit="true">This should be tracked</span> <a href="asdf.mp3" data-atrakit="false">but this should not</a> and <a href="asdf.html">this won't just because</a>.</p>
+
+<h3>Additional Events</h3>
+
+<style>
+div#morestuff p:hover {
+	background-color: aqua;
+}
+</style>
+
+<div id="morestuff">
+<p data-atrakit-event="mouseenter">This will trigger when hovered.</p>
+<p data-atrakit="true">This will trigger when clicked.</p>
+<p data-atrakit="true" data-atrakit-event="mouseenter">This will trigger when hovered.</p>
+<p data-category="Category only" data-action="action only" data-label="label only">Hi there - trigger me when you go click</p>
+</div>
+
+<button id="testButton">Test Button</button>
+<script>
+btnCnt = 0;
+var $testButton = $("#testButton");
+$testButton.on( "click", function() {
+	btnCnt++;
+	var myel = document.createElement("a");
+	$(myel).html("GOING PLACES "+btnCnt );	
+	$(myel).attr( {"data-category": "new element", "data-action": "clicked", "data-label": "Button "+btnCnt, href: "javascript:alert('hi');"} );
+	$(myel).insertAfter($testButton);
+	$(document.createElement("br")).insertBefore(myel);
+});
+
+</script>
+
+<h3>Forms</h3>
+
+
+<style>
+
+form > div {
+	display: block;
+	overflow: auto;
+}
+
+form > div > div {
+	display: inline-block;
+}
+
+form > div {
+	width: 100%;
+	max-width: 500px;
+}
+
+form > div > div:first-child {
+	width: 30%;
+	min-width: 150px;
+	float: left;
+}
+
+form > div > div:last-child {
+	width: 70%;
+	min-width: 350px;
+	float: right;
+}
+
+</style>
+
+<h4>Form with ID</h4>
+<form id="myForm_01" action="asdf.html" method="post" >
+    <div>
+        <div>First Name*:</div>
+        <div><input type="text" name="firstname" value="" required="required" /></div>
+    </div>
+    <div>
+        <div>Middle Name:</div>
+        <div><input type="text" name="middlename" value="" /></div>
+    </div>
+    <div>
+        <div>Last Name*:</div>
+        <div><input type="text" name="lastname" value="" required="required" /></div>
+    </div>
+    <div>
+        <div>Street:</div>
+        <div><input type="text" name="street" value="" /></div>
+    </div>
+    <div>
+        <div>City:</div>
+        <div><input type="text" name="city" value="" /></div>
+    </div>
+    <div>
+        <div>State:</div>
+        <div><input type="text" name="state" value=""/></div>
+    </div>
+    <div>
+        <div>ZIP*:</div>
+        <div><input type="text" name="zip" value="" required="required" /></div>
+    </div>
+    <div>
+        <div></div>
+        <div><input type="submit" name="submit" value="Submit" /></div>
+    </div>
+</form>
+
+
+<h4>Form with No ID</h4>
+<form action="asdf.html" method="post" >
+    <div>
+        <div>First Name*:</div>
+        <div><input type="text" name="firstname" value="" required="required" /></div>
+    </div>
+    <div>
+        <div>Middle Name:</div>
+        <div><input type="text" name="middlename" value="" /></div>
+    </div>
+    <div>
+        <div>Last Name*:</div>
+        <div><input type="text" name="lastname" value="" required="required" /></div>
+    </div>
+    <div>
+        <div>Street:</div>
+        <div><input type="text" name="street" value="" /></div>
+    </div>
+    <div>
+        <div>City:</div>
+        <div><input type="text" name="city" value="" /></div>
+    </div>
+    <div>
+        <div>State:</div>
+        <div><input type="text" name="state" value=""/></div>
+    </div>
+    <div>
+        <div>ZIP*:</div>
+        <div><input type="text" name="zip" value="" required="required" /></div>
+    </div>
+    <div>
+        <div></div>
+        <div><input type="submit" name="submit" value="Submit" /></div>
+    </div>
+</form>
+
+<h4>Form with Parent ID</h4>
+<div id="myForm_05">
+<form action="asdf.html" method="post" >
+    <div>
+        <div>First Name*:</div>
+        <div><input type="text" name="firstname" value="" required="required" /></div>
+    </div>
+    <div>
+        <div>Middle Name:</div>
+        <div><input type="text" name="middlename" value="" /></div>
+    </div>
+    <div>
+        <div>Last Name*:</div>
+        <div><input type="text" name="lastname" value="" required="required" /></div>
+    </div>
+    <div>
+        <div>Street:</div>
+        <div><input type="text" name="street" value="" /></div>
+    </div>
+    <div>
+        <div>City:</div>
+        <div><input type="text" name="city" value="" /></div>
+    </div>
+    <div>
+        <div>State:</div>
+        <div><input type="text" name="state" value=""/></div>
+    </div>
+    <div>
+        <div>ZIP*:</div>
+        <div><input type="text" name="zip" value="" required="required" /></div>
+    </div>
+    <div>
+        <div></div>
+        <div><input type="submit" name="submit" value="Submit" /></div>
+    </div>
+</form>
+</div>
+
+
+<script src="../../atrakit.js"></script>
+
+<script>
+    // initialize ATRAKIT for entire page
+	$(document).ready( function() { 
+		$(document).atrakit("init");
+	});
+</script>
+
+</body>
+</html>
