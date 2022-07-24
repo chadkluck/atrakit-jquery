@@ -1,5 +1,7 @@
 # atrakit
 
+> NOTE: This repository is deprecated as it uses old versions of Google Analytics. Use Google Analytics 4 with Tag Manager to achieve the same.
+
 ATRAKIT can be used to add tracking events to web pages.
 
 It is a script to automatically tag links, downloads, and events with Google Analytics (or other analytics)
